@@ -18,21 +18,21 @@ Para cada wireframe, crea un frame con el nombre de Wireframe 1, Wireframe 2, et
 ### Wireframe 1
 
 <figure>
-  <img src="../../.res/01/1.mockup.png" alt="Wireframe 3" style="width:100%">
+  <img src="../../.res/01/1.mockup.png" alt="Wireframe 3" style="width:70%">
 </figure>
 
 
 ### Wireframe 2
 
 <figure>
-  <img src="../../.res/01/2.mockup.png" alt="Wireframe 2" style="width:100%">
+  <img src="../../.res/01/2.mockup.png" alt="Wireframe 2" style="width:70%">
 </figure>
 
 
 ### Wireframe 3
 
 <figure>
-  <img src="../../.res/01/3.mockup.png" alt="Wireframe 3" style="width:100%">
+  <img src="../../.res/01/3.mockup.png" alt="Wireframe 3" style="width:70%">
 </figure>
 
 
