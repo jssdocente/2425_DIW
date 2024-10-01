@@ -20,6 +20,15 @@ Realización de una landing page en Figma, aplicando los conceptos de Componente
 - Uitliza los estilos en los compoenentes.
 - Crea la landing page aplicando los componentes y estilos definidos en los puntos anteriores.
 
+**Systema de diseño**
+
+- Tipografías:
+  - Logo: `URbanist Extra Bold`, 22px
+  - Hero: `Outfit Bold`, 48px
+  - Caption: `Outfit Regular`, 16px, Line Height  150%
+  - Otros: Outfit medium 16px, Outfit Regular 16px, Outfit Semnibold
+    Las tamaños de fuentes son 16px, 20px, 24px, 32px, 48px 
+
 ### Recursos de la tarea
 
 - [Fichero figma con recursos para su realización](https://www.figma.com/design/iGjsdtXV2oL1aKqdqx4abI/Tema-01.-Actividad-3.recursos?node-id=173-560&t=rHrp8khLZTMz5frX-1)
