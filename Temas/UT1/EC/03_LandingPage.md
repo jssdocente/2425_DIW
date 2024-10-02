@@ -6,11 +6,12 @@ Realización de una landing page en Figma, aplicando los conceptos de Componente
 
 - En tu equipo personal, proyecto Ejercicios, crea un fichero de Figma con el nombre EC_1.3_landing_page.
 - En ese fichero, crea una página para cada uno de los siguientes conceptos:
-  - 01.DesignSystem: Crear un sistema de diseño con colores, tipografías y estilos de botones.
-  - 02.Components: Crear componentes para los botones, iconos y demás elementos que se repitan en la landing page.
+  - 01.DesignSystem: Crear un sistema de diseño con colores, tipografías y estilos de botones. [Ejemplo](https://www.figma.com/design/U4eMrAH7k4AbeBln3deMl3/Ejemplo.-Basic-Design-System?node-id=0-1&node-type=canvas&t=r8jnaGtF9d47LjNd-0)
+  - 02.Components: Crear componentes para los botones, iconos y demás elementos que se repitan en la landing page. [Ejemplo](https://www.figma.com/design/U4eMrAH7k4AbeBln3deMl3/Ejemplo.-Basic-Design-System?node-id=0-1&node-type=canvas&t=r8jnaGtF9d47LjNd-0)
   - 03.LandingPage: Crear la landing page aplicando los componentes y estilos definidos en los puntos anteriores.
   
-- Para la entrega (en moodle) copia el enlace de tu fichero de Figma, y copialo en el campo correspondiente. 
+- Para la entrega (en moodle) copia el enlace de tu fichero de Figma, y copialo en el campo correspondiente.  
+  > 🔥 Asegurate de que `Anyone` tiene acceso `can view` al darle a `Share` en Figma, para que el fichero pueda ser accedido por el profesor.
 
 ### Realización de la tarea
 
