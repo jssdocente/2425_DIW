@@ -5,6 +5,7 @@ En este ejercicio tenemos un DesignSystem que contiene colores, tipografías y e
 ### Recursos
 
 Fichero Figma base: [QuizApp Figma](https://www.figma.com/design/67Uh2BCkOIjXacauWdlAm9/UT1.Boletin_1.1?node-id=205-403&t=ogPixHAEMzzMdE4b-1)
+Contraseña para el fichero: SDFSDF
 
 #### Recursos aprendizaje
 
