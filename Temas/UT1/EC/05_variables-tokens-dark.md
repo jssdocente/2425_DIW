@@ -1,13 +1,13 @@
 # Ejercicio 5: Continuación. Añadir Modo Oscuro
 
-En este ejerciio, vamos a continuar con el ejercicio anterior, y vamos a añadir el mdoo oscuro al DesignSystem.
+En este ejercio, vamos a continuar con el ejercicio anterior, y vamos a añadir el modo oscuro al DesignSystem.
 Los colores del modo oscuro y claro vienen definidos en el Fichero Figma base que se adjunta.
 
 > 🔥 **IMPORTANTE**: No comienzes con este Ejercicio, hasta que no hayas acabado con el ejercicio anterior (4)
 
 ### Recursos
 
-Fichero Figma base: [QuizApp Figma](https://www.figma.com/design/67Uh2BCkOIjXacauWdlAm9/UT1.Boletin_1.1?node-id=205-403&t=ogPixHAEMzzMdE4b-1)
+Fichero Figma base: [QuizApp Figma](https://www.figma.com/design/mFpJsgUr10UdRQGIZiPB9F/UT1.Boletin_1.2?node-id=205-403&t=qnporjgm6xVmiK0t-1)
 
 #### Recursos aprendizaje
 
