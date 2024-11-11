@@ -1,8 +1,8 @@
 function setUpThemeToggle() {
-  const themeBtn = document.getElementsByTagName("html");
+  const themeBtn = document.getElementById("themeToggle");
 
-  themeBtn[0].addEventListener("click", () => {
-    document.documentElement.classList.toggle("theme-dark");
+  themeBtn.addEventListener("click", () => {
+    document.getElementsByTagName("html")[0].classList.toggle("theme-dark");
   });
 }
 
