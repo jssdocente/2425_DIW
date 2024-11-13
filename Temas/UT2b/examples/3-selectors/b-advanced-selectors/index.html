@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css">
+    <title>Selectores avanzados</title>
+  </head>
+  <body>
+    <h1>Advanced CSS Selectors</h1>
+
+    <section class="the-ones-you-know">
+      <h2>You know these (I hope)</h2>
+      <p>element selector - <code>p</code></p>
+      <p>class selector - <code>.class</code></p>
+      <p>id selector - <code>#id</code></p>
+    </section>
+
+    <section class="universal">
+      <h2><span>*</span>Universal</h2>
+      <p>
+        This selects EVERYTHING. Every single thing<br />
+        (except ::before and ::after...).
+      </p>
+      <ul>
+        <li>Every</li>
+        <li>Single</li>
+        <li>Thing</li>
+        <li><a href="#">Everything</a></li>
+      </ul>
+      <code>Yup, even this, and, well, everything else too.</code>
+    </section>
+
+    <section class="direct-children">
+      <h2><span>></span>Direct children</h2>
+      <p>You can create selectors like this:</p>
+      <code>.direct-children p</code>
+      <p>That will select all paragraphs inside of .direct-children</p>
+      <div class="example">
+        <p>
+          But <code>.direct-child > p</code> will not select this paragraph.
+        </p>
+      </div>
+    </section>
+
+    <section class="adjacent-sibling">
+      <h2><span>+</span>Adjacent sibling</h2>
+      <div class="box"></div>
+      <div class="box"></div>
+      <a href="#">hi</a>
+      <div class="box"></div>
+      <div class="box"></div>
+    </section>
+
+    <section class="general-sibling">
+      <h2><span>~</span>General Sibling</h2>
+      <div class="box"></div>
+      <div class="box"></div>
+      <a href="#">hi</a>
+      <div class="box"></div>
+      <div class="box"></div>
+    </section>
+
+    <section class="attribute">
+      <h2><span>[ ]</span>Attribute</h2>
+      <a href="https://www.google.com" class="link-one">Google</a>
+      <a href="https://www.google.ca" class="link-two">Google Canada</a>
+      <a href="about.html" class="link-three">About page</a>
+      <a
+        href="http://awesomesocialnetwork.com"
+        class="link-four"
+        target="_blank"
+        >Socialize</a
+      >
+      <a href="ebook.pdf" class="link-five">PDF file</a>
+      <a href="#" class="another-link">Yet another link</a>
+    </section>
+  </body>
+</html>

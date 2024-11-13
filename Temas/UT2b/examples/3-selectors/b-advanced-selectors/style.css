@@ -1,0 +1,147 @@
+@import url("https://fonts.googleapis.com/css?family=Crimson+Text:400,700");
+*, *::before, *::after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin-top: 0;
+}
+
+body {
+  background: #f5f5f5;
+  color: #18314F;
+  font-family: "Crimson Text", serif;
+  font-size: 1.5rem;
+}
+
+h1 {
+  text-align: center;
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 15px;
+  line-height: 1;
+  font-weight: 400;
+  margin: 3em 0;
+}
+
+h2 {
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: 1rem;
+  margin-bottom: 3em;
+  letter-spacing: 8px;
+  text-align: center;
+  color: #8BBEB2;
+}
+
+h2::after {
+  content: "";
+  display: block;
+  border-bottom: 1px solid rgba(24, 49, 79, 0.25);
+  width: 20%;
+  margin: 3em auto 0;
+}
+
+h2 span {
+  font-size: 5em;
+  font-weight: 700;
+  display: block;
+  color: #18314F;
+}
+
+a {
+  color: #8BBEB2;
+}
+a:hover {
+  color: #7AE7C7;
+}
+
+section {
+  background: white;
+  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+          box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+  width: 80%;
+  margin: 50px auto;
+  padding: 50px;
+}
+
+.universal code {
+  background: #C3DDD7;
+  padding: 0.25em;
+}
+
+.direct-children .example {
+  padding: 1em;
+  background: #C3DDD7;
+}
+.direct-children .example p {
+  margin: 0;
+}
+
+.adjacent-sibling .box {
+  height: 75px;
+  width: 75px;
+  background: rgba(0, 0, 0, 0.5);
+  display: inline-block;
+}
+
+.general-sibling .box {
+  height: 75px;
+  width: 75px;
+  background: rgba(0, 0, 0, 0.5);
+  display: inline-block;
+}
+
+/* =================================
+   Universal 
+   ================================= */
+/* =================================
+   Direct children
+   ================================= */
+.direct-children p {
+  color: red;
+}
+
+.direct-children > p {
+  color: green;
+}
+
+/* =================================
+   Adjacent siblings
+   ================================= */
+.adjacent-sibling .box + .box {
+  background: red;
+}
+
+/* =================================
+   General siblings
+   ================================= */
+.general-sibling .box ~ .box {
+  background: red;
+}
+
+/* =================================
+   Attributes
+   ================================= */
+/* exact match */
+a[target] {
+  color: darkblue;
+}
+
+a[href="about.html"] {
+  color: red;
+}
+
+a[class|=another] {
+  color: purple;
+}
+
+a[href^=http] {
+  color: orange;
+}
+
+a[href*=google] {
+  color: black;
+}
+
+a[href$=".ca"] {
+  color: blue;
+}

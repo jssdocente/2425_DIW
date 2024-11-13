@@ -1,0 +1,124 @@
+:root {
+  --ff-primary: basic-sans, sans-serif;
+  --clr-primary: #ee6352;
+  --clr-body: #333;
+  --clr-bg: #ddd;
+  --spacer: 1rem;
+}
+
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+h1, h2, h3, p {
+  margin: 0;
+}
+
+.flow > * + * {
+  margin-top: var(--flow-space, var(--spacer));
+}
+
+body {
+  font-family: var(--ff-primary);
+  min-height: 100vh;
+  font-size: 1.125em;
+  line-height: 1.6;
+  color: var(--clr-body);
+  background: var(--clr-bg);
+  padding: 3rem;
+  text-align: center;
+}
+
+a {
+  color: var(--clr-primary);
+}
+
+.content {
+  width: 70vw;
+  margin: 3rem auto;
+  padding: 3em;
+  -webkit-box-shadow: 0 0 3em rgba(0, 0, 0, 0.15);
+          box-shadow: 0 0 3em rgba(0, 0, 0, 0.15);
+  background: white;
+}
+
+.title {
+  font-weight: 900;
+  color: var(--clr-primary);
+  line-height: 0.8;
+  margin-bottom: 1em;
+}
+
+.image-grid {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[3];
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 15rem;
+}
+.image-grid > * {
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  outline: 3px solid red;
+}
+.image-grid > * > * {
+  padding: 0.25em 0.75em;
+  border-radius: 0.25em;
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  letter-spacing: 1px;
+}
+
+[class*=bg-] {
+  background-image: url("https://assets.codepen.io/308367/home-gym.jpg");
+  background-size: cover;
+}
+
+.bg-image {
+  outline: 2px solid black;
+  padding: 20em;
+  background-image: url("https://assets.codepen.io/308367/house.jpg"), url("https://assets.codepen.io/308367/f47b1-bandeirinha-azul-e-branca-png.png");
+  background-repeat: no-repeat, repeat;
+  background-position: right -20% bottom 0px, top left;
+  background-size: auto, 10%;
+}
+
+.bg-1 {
+  background-position: top left;
+}
+
+.bg-2 {
+  background-position: top center;
+}
+
+.bg-3 {
+  background-position: top right;
+}
+
+.bg-4 {
+  background-position: center left;
+}
+
+.bg-5 {
+  background-position: center center;
+}
+
+.bg-6 {
+  background-position: center right;
+}
+
+.bg-7 {
+  background-position: bottom left;
+}
+
+.bg-8 {
+  background-position: bottom center;
+}
+
+.bg-9 {
+  background-position: bottom right;
+}

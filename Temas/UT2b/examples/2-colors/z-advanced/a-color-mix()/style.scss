@@ -1,0 +1,183 @@
+:root {
+  --brand: hsl(25, 100%, 50%);
+
+  --primary-base: hsl(231, 70%, 50%);
+  --surface-base: hsl(231, 30%, 96%);
+  --text-base: hsl(231, 20%, 15%);
+
+  --brand-muted: color-mix(in oklab, var(--brand) 80%, var(--surface-base));
+  --brand-vivid: color-mix(in oklab, var(--brand) 80%, var(--text-base));
+
+  --primary-muted: color-mix(
+    in oklab,
+    var(--primary-base) 80%,
+    var(--surface-base)
+  );
+  --primary-vivid: color-mix(
+    in oklab,
+    var(--primary-base) 80%,
+    var(--text-base)
+  );
+
+  --surface-muted: color-mix(
+    in oklab,
+    var(--surface-base) 80%,
+    var(--text-base)
+  );
+
+  --text-muted: color-mix(in oklab, var(--text-base) 80%, var(--surface-base));
+
+  @media (prefers-color-scheme: dark) {
+    --surface-base: hsl(231, 30%, 5%);
+    --text-base: hsl(231, 20%, 85%);
+  }
+}
+
+body {
+  background: var(--surface-base);
+  color: var(--text-base);
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  background: var(--surface-base);
+  color: var(--text-base);
+}
+
+h1 {
+  color: var(--brand);
+  line-height: 1.1;
+}
+
+h2,
+h3 {
+  color: var(--text-base);
+}
+
+p {
+  color: var(--text-muted);
+}
+
+strong,
+em {
+  color: var(--text-base);
+}
+
+a {
+  color: var(--primary-base);
+}
+
+.auto-grid {
+  --min-column-size: 225px;
+
+  display: grid;
+  gap: clamp(1rem, 5vmax, 1.625rem);
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(100%, var(--min-column-size)), 1fr)
+  );
+}
+
+.wrapper {
+  --max-width: 55rem;
+  width: min(100% - 2rem, var(--max-width));
+  margin-inline: auto;
+}
+
+.card {
+  padding: 1rem;
+  color: var(--text-muted);
+  background-color: var(--surface-muted);
+  border-block-start: 0.5rem solid var(--primary-base);
+  border-radius: 0.5rem;
+}
+
+.card > * {
+  margin: 0;
+}
+
+.card > *:not(:last-child) {
+  margin-bottom: 0.75rem;
+}
+
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.color-picker > fieldset {
+  border: 0;
+  display: flex;
+  gap: 2rem;
+  width: fit-content;
+  background: #fff;
+  padding: 1rem 3rem;
+  margin-inline: auto;
+  border-radius: 0 0 1rem 1rem;
+}
+
+.color-picker input[type="radio"] {
+  appearance: none;
+  width: 1.5rem;
+  height: 1.5rem;
+  outline: 3px solid var(--radio-color, currentColor);
+  outline-offset: 3px;
+  border-radius: 50%;
+}
+
+.color-picker input[type="radio"]:checked {
+  background-color: var(--radio-color);
+}
+
+.color-picker input[type="radio"]#light {
+  --radio-color: gray;
+}
+.color-picker input[type="radio"]#pink {
+  --radio-color: pink;
+}
+.color-picker input[type="radio"]#blue {
+  --radio-color: blue;
+}
+.color-picker input[type="radio"]#green {
+  --radio-color: green;
+}
+.color-picker input[type="radio"]#dark {
+  --radio-color: #232323;
+}
+
+:root:has(#light:checked) {
+  --primary-base: hsl(231, 70%, 50%);
+  --surface-base: hsl(231, 30%, 96%);
+  --text-base: hsl(231, 20%, 15%);
+}
+
+:root:has(#pink:checked) {
+  --primary-base: hsl(310 50% 50%);
+  --text-base: hsl(310 50% 15%);
+  --surface-base: hsl(310 50% 85%);
+}
+
+:root:has(#blue:checked) {
+  --primary-base: hsl(209 50% 50%);
+  --text-base: hsl(209 50% 15%);
+  --surface-base: hsl(209 50% 85%);
+}
+
+:root:has(#green:checked) {
+  --primary-base: hsl(109 50% 50%);
+  --text-base: hsl(109 50% 85%);
+  --surface-base: hsl(109 50% 7%);
+}
+
+:root:has(#dark:checked) {
+  --surface-base: hsl(231, 30%, 5%);
+  --text-base: hsl(231, 20%, 85%);
+}

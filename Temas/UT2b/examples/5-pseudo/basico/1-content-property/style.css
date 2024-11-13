@@ -1,0 +1,147 @@
+@import url("https://fonts.googleapis.com/css?family=Unica+One|Vollkorn");
+body {
+  font-size: 1rem;
+  text-align: center;
+  font-family: "Vollkorn";
+  line-height: 1.4;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: "Unica One";
+  text-transform: uppercase;
+  line-height: 0.9;
+  color: #c31;
+}
+
+h2 {
+  margin-top: 1.2em;
+  margin-bottom: 0;
+}
+
+p {
+  margin-top: 0.25em;
+}
+
+a {
+  color: #c31;
+}
+
+.intro {
+  font-size: 5rem;
+}
+
+blockquote {
+  font-size: 2rem;
+  color: black;
+}
+
+blockquote::before {
+  content: open-quote;
+}
+
+blockquote::after {
+  content: close-quote;
+}
+
+a[data-tool-tip] {
+  position: relative;
+}
+
+a[data-tool-tip]::after {
+  content: attr(data-tool-tip);
+  display: block;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 1em 3em;
+  color: white;
+  border-radius: 5px;
+  font-size: 0.8em;
+  bottom: 0;
+  left: 0;
+  white-space: nowrap;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  -webkit-transition: bottom ease-out 150ms, -webkit-transform ease-out 150ms;
+  transition: bottom ease-out 150ms, -webkit-transform ease-out 150ms;
+  transition: transform ease-out 150ms, bottom ease-out 150ms;
+  transition: transform ease-out 150ms, bottom ease-out 150ms, -webkit-transform ease-out 150ms;
+}
+
+a[data-tool-tip]:hover::after {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  bottom: 100%;
+}
+
+.decorations {
+  padding: 7em;
+}
+
+.section-with-deco::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f0e7";
+  display: block;
+  margin-bottom: 5px;
+}
+
+a[href$=".pdf"]::after {
+  font-family: "Font Awesome 5 Free";
+  content: " \f1c1";
+}
+
+a[href^=http]::after {
+  font-family: "Font Awesome 5 Free";
+  content: " \f35d";
+  font-weight: 900;
+  font-size: 0.8em;
+}
+
+.counters {
+  background: lightgray;
+  text-align: left;
+  padding: 5em 8em;
+  margin-top: 7em;
+  counter-reset: counter-name;
+}
+
+.section {
+  position: relative;
+  counter-increment: section-counter;
+}
+
+.section::before {
+  content: counter(section-counter);
+  position: absolute;
+  left: -2.5em;
+  top: -0.5em;
+  background: white;
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: 3px solid rgba(0, 0, 0, 0.7);
+  color: rgba(0, 0, 0, 0.7);
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.counters ol {
+  list-style: none;
+}
+
+.counters li::before {
+  counter-increment: ordered-list;
+  content: "list item " counter(ordered-list) ") ";
+  font-size: 0.8em;
+  color: #c31;
+}

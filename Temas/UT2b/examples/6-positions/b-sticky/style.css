@@ -1,0 +1,29 @@
+.content {
+  width: 90%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+section {
+  display: -ms-grid;
+  display: grid;
+  grid: auto/200px 1fr;
+  grid-gap: 0 2em;
+}
+section p {
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 1;
+  grid-column: 2/3;
+}
+
+.section-title {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
+  grid-column: 1/2;
+  text-align: right;
+  -ms-grid-row-align: start;
+      align-self: start;
+  top: 1em;
+  position: sticky;
+  top: 1em;
+}
