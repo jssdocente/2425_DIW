@@ -1,0 +1,74 @@
+:root {
+  --ff-primary: basic-sans, sans-serif;
+  --clr-primary: #ee6352;
+  --clr-body: #333;
+  --clr-bg: #ddd;
+  --spacer: 1rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.example {
+  display: none;
+  background: limegreen;
+  opacity: .75;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  
+  width: 50%;
+  height: 50%;
+  margin: auto;
+}
+
+.content {
+  position: relative;
+}
+
+h1, h2, h3, p {
+  margin: 0;
+}
+
+// .flow > * + * {
+//   margin-top: var(--flow-space, var(--spacer));
+// }
+
+body {
+  font-family: var(--ff-primary);
+  min-height: 100vh;
+  font-size: 1.125em;
+  line-height: 1.6;
+  color: var(--clr-body);
+  background: var(--clr-bg);
+}
+
+a {
+  color: var(--clr-primary);
+}
+
+.content {
+  border: 1px solid blue;
+
+  width: 70vw;
+  margin: 3rem auto;
+  padding: 3em;
+  box-shadow: 0 0 3em rgba(0,0,0,.15);
+  background: white;
+}
+
+.title {
+  border: 1px solid var(--clr-primary);
+  
+  font-weight: 900;
+  position: relative;
+  top: 2px;
+  color: var(--clr-primary);
+  line-height: .8;
+}
