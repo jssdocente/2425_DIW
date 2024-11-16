@@ -178,5 +178,78 @@ section {
 }
 ```
 
+### Ejercicio 4
+
+nombre-carpeta: `04.challenge`
+
+Debes realizar lo siguiente:
+
+- Crear 3 variables de color, y usalas para todos los items.
+- No necesitas crear nuevos selectores, todo puede ser aplicado a un existente selector, o anidado dentro de uno existente.
+
+*Colores y donde aplicarlos:*
+
+- White: #f8f7f7
+  - page background
+  - primary button text color
+  - outline button background
+  - hover text color for both buttons
+
+- Black: #201e1f
+  - body color
+  - button hover/focus background
+  - shadow color on the card
+
+- Red: #da3f0b
+  - title color
+  - button borders (both buttons)
+  - primary button background
+  - outline button text color
+  - button hover/focus shadow
+
+Debes escribir el código en el fichero style.scss para que consiguas el CSS que se indica. En el fichero SCSS coloca los estilos donde se indica en los comentarios.
+
+El resultado debe ser el siguiente: 
+
+![Resultado](./_res/03.3.gif)
+
+El SCSS a conseguir es el siguiente:
+
+```scss
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  font-size: 1.75rem;
+  font-family: system-ui, sans-serif;
+  line-height: 1.6;
+
+  /* this is being used to center the content on the screen */
+  display: grid;
+  height: 100vh;
+  place-items: center;
+}
+
+.card {
+  display: grid;
+  gap: 0.75em;
+  width: min(90%, 60rem);
+  padding: 2em;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.5em 1.5em;
+  text-decoration: none;
+}
+
+.flex-group {
+  display: flex;
+  gap: 1rem;
+}
+```	
+
 
 
