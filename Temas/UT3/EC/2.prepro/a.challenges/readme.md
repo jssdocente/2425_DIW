@@ -251,5 +251,68 @@ body {
 }
 ```	
 
+### Ejercicio 5
+
+nombre-carpeta: `05.challenge`
+
+🫴 recursos: 
+  - index: `05\index.html`
+  - style: `05\style.scss`
+
+📝 Instrucciones:
+
+Aplica las reglas que se indican, y crea un fichero `style.scss` creando las reglas necesarios utilizando mixins.
+
+---
+
+Este ejercicio consta de 3 partes:
+
+#### Parte 1: Gradientes
+
+Los gradientes son un caso de uso común para los mixins, puesto que normalmente son bastante repetitivos y tediosos de escribir, incluso para un simple gradiente.
+
+Vamos a crear 3 gradientes, `.section-one`, `.section-two`, y `.section-three` para 3 diferentes gradientes de fondo.
+
+Debes crear:
+
+- Mixin para crear el gradinente.
+- Debe aceptar 3 argumentos (2 colores y el angulo del gradiente).
 
 
+#### Parte 2: Psuedo-elementos
+
+Los pseudo-elementos son otra buena oportunidad para usar mixins, ya que requieren que tengamos que escribir una y otra vez el mismo código.
+
+VAmos a usar este `mixin` sobre el selector `.title`para crear un decorativo `underline` en el título.
+
+Debes crear:
+
+- Crear un `mixin` llamado `pseudo-underline` que crear un pseudo-elemento.
+- Debe aceptar argumentos para el `width`, `height`, `background`, y `margin`.
+- Debe tener el siguiente código incluido dentro del mixin:
+
+```scss
+content: '';
+display: block;
+```	
+
+#### Parte 3: Badges y Botones
+
+Vamos a crear un mixin para estilar botones, pero mientras más genérico sea el mixin, más util será.
+
+Vas a crear u mixin para estilo ambos de los 2 botones que tenemos, `.btn-one` y `.btn-two`, así como 2 badges, `.badge-one` y `.badge-two`.
+
+Debes crear:
+
+- Crear un más genérico y multipropósito `mixin` llamado `ui-element`.
+- Este mixin necesita aceptar los siguientes argumentos:
+  - `$size` (aceptar valores como 1em, or 15px, y sua este valor para establecer el `padding`).
+  - `$color`
+  - `$bg-color`
+  - `$hover-color`
+  - `$hover-bg-color`
+- El padding-left y right debería siemre ser 3x mayor que el padding-top y bottom.
+
+El resultado debe ser el siguiente
+
+<img src="./_res/05.1.png" width="50%">
