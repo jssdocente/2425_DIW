@@ -10,7 +10,7 @@ Crea un fichero `index.html` que contenga un índice con enlaces a cada uno de l
 
 
 
-### Ejercicio 1
+### Ejercicio 1: Primeros pasos con SASS
 
 nombre-carpeta-fichero: `01.challenge\index.html`
 
@@ -43,7 +43,7 @@ Escribe el código en SASS para que obtengas el siguiente resultado:
 ```
 
 
-### Ejercicio 2
+### Ejercicio 2: Primero pasos con SASS
 
 nombre-carpeta: `02.challenge`
 
@@ -96,7 +96,7 @@ body {
 }
 ```
 
-### Ejercicio 3
+### Ejercicio 3: Trabajo con Nesting en SASS
 
 nombre-carpeta: `03.challenge`
 
@@ -178,7 +178,7 @@ section {
 }
 ```
 
-### Ejercicio 4
+### Ejercicio 4: Variables y Colores
 
 nombre-carpeta: `04.challenge`
 
@@ -189,8 +189,7 @@ Debes realizar lo siguiente:
 
 *Colores y donde aplicarlos:*
 
-- White: #f8f7f7
-  - page background
+- White: #f8f7f  - page background
   - primary button text color
   - outline button background
   - hover text color for both buttons
@@ -251,7 +250,7 @@ body {
 }
 ```	
 
-### Ejercicio 5
+### Ejercicio 5: Mixins, Extend, y Placeholder
 
 nombre-carpeta: `05.challenge`
 
@@ -316,3 +315,169 @@ Debes crear:
 El resultado debe ser el siguiente
 
 <img src="./_res/05.1.png" width="50%">
+
+
+
+### Ejercicio 6: Trabajo con bucle FOR
+
+nombre-carpeta: `06.challenge`
+
+*📄 Descripción:*
+
+Cuando combinamos bucles junto con interpolación y los módulos de color, podemos hacer y crear un sistema de color muy robusto y flexible.
+
+En este ejercicio, intenta resolver cómo puedes hacerlo.
+
+*📝 Instrucciones:*
+
+Debes conseguir partiendl del código SCSS que se indica, el siguiente resultado:
+
+- Usa un bucl `@for` para generar 10 clases.
+- Los nombres de las clases debe ser `clr-primary-X`, donde `X` será un número (.clr-primary-1, .clr-primary-2, etc).
+- El primer valor debería ser el mimso como `$clr-primary`, y cada valor siguiente debería ser 10% más claro que el anterior.
+
+> 💡 Pista:<br>
+>  Usa la interporlación, y la función scale del módulo de color para hacer más claro el color.
+
+
+*📦 Código de partida*
+
+```scss
+$clr-primary: #2553db;
+$clr-steps: 10;
+/* más claro en un 10%  por cada paso*/
+​
+```	
+
+*🖼️ Código a conseguir*
+
+```scss
+.clr-primary-1 {
+  color: #2553db;
+}
+
+.clr-primary-2 {
+  color: #3b64df;
+}
+
+.clr-primary-3 {
+  color: #5175e2;
+}
+
+.clr-primary-4 {
+  color: #6687e6;
+}
+
+.clr-primary-5 {
+  color: #7c98e9;
+}
+
+.clr-primary-6 {
+  color: #92a9ed;
+}
+
+.clr-primary-7 {
+  color: #a8baf1;
+}
+
+.clr-primary-8 {
+  color: #becbf4;
+}
+
+.clr-primary-9 {
+  color: #d3ddf8;
+}
+
+.clr-primary-10 {
+  color: #e9eefb;
+}
+```
+
+### Ejercicio 7: Trabajo con bucle EACH
+
+nombre-carpeta: `07.challenge`
+
+*📄 Descripción:*
+
+En este desafio, vamos a trabajar con el bucle `@each` para crear un conjunto de iconos. Para conseguir superarlo tendrás que utilizar nesting e interpolación.
+
+*📝 Instrucciones:*
+
+Debes conseguir partiendl del código SCSS que se indica, el siguiente resultado:
+
+- Usa un bucl `@for` para generar 10 clases.
+- Los nombres de las clases debe ser `clr-primary-X`, donde `X` será un número (.clr-primary-1, .clr-primary-2, etc).
+- El primer valor debería ser el mimso como `$clr-primary`, y cada valor siguiente debería ser 10% más claro que el anterior.
+
+> 💡 Pista:<br>
+>  Usa la interporlación, y la función scale del módulo de color para hacer más claro el color.
+
+
+*📦 Código de partida*
+
+```scss
+$icons: mail, twitter, github;
+​
+.icon {
+  width: 1.5rem;
+  aspect-ratio: 1;
+  background-size: contain;
+​
+  /* tu código aquí debajo */
+}
+```	
+
+*🖼️ Código a conseguir*
+
+```scss
+.icon {
+  width: 1.5rem;
+  aspect-ratio: 1;
+  background-size: contain;
+}
+.icon--mail {
+  background-image: url("/images/mail.svg");
+}
+.icon--twitter {
+  background-image: url("/images/twitter.svg");
+}
+.icon--github {
+  background-image: url("/images/github.svg");
+}
+```
+
+### Ejercicio 8: Trabajo con condicionales en SCSS
+
+nombre-carpeta: `08.challenge`
+
+*📄 Descripción:*
+
+Como sabes los `mixins` pueden aceptar argumentos, y estos argumentos pueden ser usados para hacer decisiones en el código.
+
+*📝 Instrucciones:*
+
+Debes conseguir partiendo de un mixin que añade la lógica para crear un borde para los 4 lados iguales, que pueda hacerlo tanto para los 4 lados, como para un lado específico.
+
+Puedes hacer lo que consideres necesario para conseguirlo, incluso modifiar los argumentos del mixin.
+
+Una posible implementación sería la siguiente:
+
+```scss
+@mixin border($color: #dedede, $width: 1px, $style: solid) {
+	border: $color $width $style;
+}
+```	
+
+De tal forma que se aplicaría de la siguiente forma:
+
+```scss
+// esto aplicará el borde en los 4 lados
+.tag { 
+  @include border();
+}
+
+// esto aplicará el borde solo en la parte inferior 
+.call-to-action {
+   @include border(bottom) 
+}
+```
