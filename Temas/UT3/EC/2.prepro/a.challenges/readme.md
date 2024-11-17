@@ -44,6 +44,10 @@ Escribe el código en SASS para que obtengas el siguiente resultado:
 
 nombre-carpeta: `02.challenge`
 
+🫴 recursos: 
+  - index: `02\index.html`
+  - style: `02\style.scss` 
+
 Debes escribir el código en el fichero style.scss para que consiguas el CSS que se indica. En el fichero SCSS coloca los estilos que se indican en los comentarios del código.
 
 El resultado debe ser el siguiente: 
@@ -96,6 +100,10 @@ body {
 ### Ejercicio 3: Trabajo con Nesting en SASS
 
 nombre-carpeta: `03.challenge`
+
+🫴 recursos: 
+  - index: `03\index.html`
+  - style: `03\style.scss`
 
 Debes escribir el código en el fichero style.scss para que consiguas el CSS que se indica. En el fichero SCSS coloca los estilos donde se indica en los comentarios.
 
@@ -178,6 +186,9 @@ section {
 ### Ejercicio 4: Variables y Colores
 
 nombre-carpeta: `04.challenge`
+
+🫴 recursos: 
+  - index: `04\index.html`
 
 Debes realizar lo siguiente:
 
