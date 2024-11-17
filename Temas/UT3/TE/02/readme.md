@@ -333,4 +333,16 @@ Para posicionar el botón utiliza la propiedad `position` dando valores adecuado
 > 💡 Pista: la propiedad transform: traslateY(-50%) puede ayudarte. Investiga esta opción
 
 
+**Un último desafio**
+
+El mixin `interactive-scale` es muy útil, pero el color de hover y focus es el mismo. Sería muy interesante que pudieramos pasar un color diferente para el hover y el focus. Y además, que si el color no se pasa, se use el color por defecto.
+E incluso podríamos hacer que tenga hover/focus o no a través de un parámetro, con valor por defecto `true`.
+
+Aplica estos cambios en el mixin `interactive-scale`.
+
+- Agregar 2 parámetros más, uno para el color y bg-color de hover.
+- Agregar un parámetro para activar o desactivar el hover/focus.
+- Si no se pasa el color para hover, se usa el color del parámetro $color.
+- Si no se desea efecto hover/focus, que no incluya las reglas de hover/focus.
+
 
