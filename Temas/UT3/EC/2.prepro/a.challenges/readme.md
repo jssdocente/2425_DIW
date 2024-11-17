@@ -540,3 +540,85 @@ body {
 >  - El módulo `sass:meta` tiene una función llamada `type-of` permite conocer si es un número, string, ..
 > - El módulo `math` tiene una función llamada `unitless` que permite saber si un número tiene unidad o no.
 > - Para lanzar un error, puedes usar la función `@error` de SASS.
+
+
+### Ejercicio 10: Trabajando con Partials en SASS
+
+nombre-carpeta: `10.challenge`
+nombre-fichero: `10.1.scss`
+
+🫴 recursos: 
+  - `10\partials\_colors.scss`
+  - `10\partials\_font-sizes.scss`
+  - `10\partials\_mixins.scss`
+  - `10\main.scss`
+
+*📄 Descripción:*
+
+En este desafio, vamos a trabajar con los `partials` en SASS, y cómo podemos usarlos para dividir nuestro código en partes más manejables.
+
+Este ejercicio consta de 3 partes:
+
+- Usar los partials file.
+- Usar un mixin en un partial.
+- Usar namespaces para incluir como `as *` .
+
+#### Parte 1: Usar los partials
+
+*📝 Instrucciones:*
+
+- You may not change any of the code inside the partial files, and do not change anything above the .card selector for this challenge (you cannot change the @use ).
+- We want to use variables that are in the abstract files to have the resulting compiled CSS. 
+
+- No puedes cambiar nada del código dentro de los ficheros parciales, y no puedes cambiar nada por encima del selector `.card` para este desafio (no puedes cambiar el `@use`).
+- Queremos usar las variables que están en los ficheros `partials` para tener obtener el CSS compilado resultante.
+
+Utiliza el contenido de `10\main.scss` como base para el ejecicio. Aplica los cambios necesarios en el fichero `10.challenge.scss` para que el resultado sea el siguiente:
+
+```scss
+.card {
+  font-size: 1.125rem;
+  color: #234;
+}
+```
+
+#### Parte 2: Usar los partials
+
+nombre-fichero: `10.2.scss`
+
+*📝 Instrucciones:*
+
+Ahora queremos usar el mixin `docorative-corner` que está en el fichero `10\partials\_mixins.scss`.
+
+- Necesitaras acceder al mixin.
+- Cambia el name-spacing de fichero del mixin, para que puedar escribir `@include m.decorative-corner()`.
+- Usa el color `$clr-secondary`desde el fichero `_colors.scss` como argumento para utilizar el mixin.
+
+El compilado CSS debería ser el siguiente:
+
+```scss
+.card {
+  font-size: 1.125rem;
+  color: #234;
+  position: relative;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  left: -4rem;
+  top: -4rem;
+  width: 100px;
+  aspect-ratio: 1;
+  border-left: 3px solid #123;
+  border-top: 3px solid #123;
+}
+```
+
+#### Parte 3: Usar los partials
+
+nombre-fichero: `10.3.scss`
+
+*📝 Instrucciones:*
+
+Actualiza el name-spacing en todos los partials para incluir como *, y actualiza donde se están usando para que el CSS se compile sin errores.
