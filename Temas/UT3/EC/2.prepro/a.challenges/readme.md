@@ -6,9 +6,6 @@ Cada ejercicio se guardará en un fichero con el nombre que se indica en el enun
 
 Cada ejercicio tendrá su propia carpeta con el nombre del ejercicio, por ejemplo, el ejercicio 1 se guardará en la carpeta `01`, y así sucesivamente.
 
-Crea un fichero `index.html` que contenga un índice con enlaces a cada uno de los ejercicios, al fichero `index.html`de cada uno de los ejercicios.
-
-
 
 ### Ejercicio 1: Primeros pasos con SASS
 
@@ -43,11 +40,11 @@ Escribe el código en SASS para que obtengas el siguiente resultado:
 ```
 
 
-### Ejercicio 2: Primero pasos con SASS
+### Ejercicio 2: Primeros pasos con SASS
 
 nombre-carpeta: `02.challenge`
 
-Debes escribir el código en el fichero style.scss para que consiguas el CSS que se indica. En el fichero SCSS coloca los estilos donde se indica en los comentarios.
+Debes escribir el código en el fichero style.scss para que consiguas el CSS que se indica. En el fichero SCSS coloca los estilos que se indican en los comentarios del código.
 
 El resultado debe ser el siguiente: 
 
