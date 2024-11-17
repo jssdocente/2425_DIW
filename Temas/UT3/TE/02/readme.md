@@ -37,8 +37,6 @@ El proyecto consta de una serie de pasos:
 - **Paso 1:** Crear la estructura HTML
 - **Paso 2:** Crear los estilos básicos y el reset CSS
 - **Paso 3:** Estilando la página
-- **Paso 4:** Crear el esquema de color invertido
-- **Paso 5:** Creando efectos
 
 Para cada paso, se deberá ir creando un commit con el siguiente formato: <br>
 `[TE3.2/XX.Y] Donde TE3.2 (boletin 3.2) es el nombre del boletin y XX es el paso que se está realizando, y Y es el subpaso.`
