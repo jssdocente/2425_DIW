@@ -481,3 +481,62 @@ De tal forma que se aplicaría de la siguiente forma:
    @include border(bottom) 
 }
 ```
+
+### Ejercicio 9: Trabajando con todo lo aprendiendo en SASS
+
+nombre-carpeta: `09.challenge`
+
+*📄 Descripción:*
+
+Como sabes los `mixins` pueden aceptar argumentos, y estos argumentos pueden ser usados para hacer decisiones en el código.
+
+*📝 Instrucciones:*
+
+Los únicos cambios que tendrás que hacer serán dentro del `mixin` que sea acompaña como código de partida.
+
+Tienes que realizar los siguientes cambios:
+
+- Comprueba si el valor está dentro del Map, si está usalo.
+- Si no está dentro del Map, comprueba si es un número o no.
+- Si es un número, podemos usar ese número.
+- E incluso un paso más, comprobando si el valor además de numérico tiene una unidadd de medida o no.
+- Si es número, pero no tiene unidad, imprime un error diciendo el problema. En cualquier otro caso, imprime un error diciendo que el valor no está en el Map.
+
+*📦 Código de partida*
+
+El código está comentado explicando lo que se espera de cada parte del código.
+
+```scss
+@use 'sass:map';
+
+$breakpoints: (
+  small: 30em,
+  medium: 45em,
+  large: 65em,
+  xl: 80em
+);
+
+@mixin mq($size) {
+  $breakpoint: map.get($breakpoints, $size);
+
+  @media screen and (min-width: $breakpoint) {
+    @content;
+  }
+}
+
+body {
+  // todos estos mixins deberían funcionar
+  @include mq(medium) { background: pink; }
+  @include mq(500px) { background: lightblue; }
+  @include mq(100em) { background: #efefef; }
+
+  // esto debería fallar, con un error diciéndome por qué
+  @include mq(reallysmall) { background: yellow; }
+  @include mq(5000) { background: purple; }
+}
+```
+
+> 💡 Pistas:<br>
+>  - El módulo `sass:meta` tiene una función llamada `type-of` permite conocer si es un número, string, ..
+> - El módulo `math` tiene una función llamada `unitless` que permite saber si un número tiene unidad o no.
+> - Para lanzar un error, puedes usar la función `@error` de SASS.
