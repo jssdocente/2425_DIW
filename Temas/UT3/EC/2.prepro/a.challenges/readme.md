@@ -220,7 +220,7 @@ El resultado debe ser el siguiente:
 
 ![Resultado](./_res/03.3.gif)
 
-El SCSS a conseguir es el siguiente:
+El CSS a conseguir es el siguiente:
 
 ```scss
 * {
