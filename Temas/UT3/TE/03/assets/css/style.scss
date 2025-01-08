@@ -1,0 +1,134 @@
+@use "./generic/normalize" as *;
+@use "./generic/reset" as *;
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500;700&display=swap");
+
+/* VARIABLES */
+$ft-primary: "Inter", sans-serif;
+$ft-secondary: "'Fira Code', monospace";
+
+//colores
+$cl-white-500: #ffffff;
+$cl-white-600: #f8f9fa;
+$cl-white-700: #cbcbcb;
+$cl-green-500: #2ecc71;
+$cl-blue-500: #3498db;
+$cl-blue-300: #c8e9ff;
+$cl-blue-800: #2c3e50;
+$cl-blue-700: #3c5269;
+$cl-violet-500: #8e44ad;
+$cl-violet-800: #8e44ad52;
+
+$cl-surface: $cl-white-600;
+$cl-primary: $cl-blue-500;
+$cl-secondary: $cl-violet-500;
+$cl-text: $cl-blue-800;
+$cl-btn-text: $cl-white-500;
+$cl-card-text: $cl-blue-500;
+$cl-card-surface: $cl-white-500;
+
+//Gradientes
+$gd-primary-gradient: linear-gradient(
+  135deg,
+  $cl-blue-500 0%,
+  $cl-violet-500 100%
+);
+
+$sh-card: 0 4px 6px rgba(0, 0, 0, 0.1);
+$sh-hover: 0 8px 15px rgba(0, 0, 0, 0.15);
+
+//Espaciado
+$sp-3xs: 0.3em;
+$sp-2xs: 0.5em;
+$sp-xs: 0.75em;
+$sp-s: 1em;
+$sp-m: 1.25em;
+$sp-l: 2em;
+$sp-xl: 2.25em;
+$sp-3xl: 3em;
+
+$tr-speed: 0.3s;
+
+$fs-xs: 1rem; /* 16px */
+$fs-sm: 1.25rem; /* 20px */
+$fs-md: 1.5rem; /* 24px */
+$fs-lg: 2rem; /* 32px */
+$fs-xl: 2.5rem; /* 40px */
+$fs-2xl: 3.5rem; /* 56px */
+$fs-3xl: 4.5rem; /* 72px */
+
+/* Headings */
+$tp-h1: 700 #{$fs-2xl} / 89.6px #{$ft-secondary};
+$tp-h2_lh64: 700 #{$fs-xl} / 51.2px #{$ft-secondary};
+$tp-h2: 700 #{$fs-xl} / 51.2px #{$ft-secondary};
+$tp-h3: 700 #{$fs-lg} / 51.2px #{$ft-secondary};
+$tp-h3_fw600: 700 #{$fs-lg} / 51.2px #{$ft-secondary};
+$tp-h4: 700 #{$fs-md} / 38.4px #{$ft-secondary};
+
+/* Titles */
+$tp-title_L: 500 #{$fs-md} / 38.4px #{$ft-secondary};
+$tp-title_M_fw500: 500 #{$fs-sm} / 32px #{$ft-secondary};
+$tp-title_M: 400 #{$fs-sm} / 32px #{$ft-secondary};
+$tp-title_S: 400 #{$fs-xs} / 25.6px #{$ft-secondary};
+
+/* Body */
+$tp-body_L: 400 #{$fs-md} / 38.4px #{$ft-primary};
+$tp-body_M: 400 #{$fs-sm} / 32px #{$ft-primary};
+$tp-body_S: 400 #{$fs-xs} / 25.6px #{$ft-primary};
+
+:root {
+  --ft-primary: #{$ft-primary};
+  --ft-secondary: #{$ft-secondary};
+
+  --cl-primary: #{$cl-primary};
+  --cl-secondary: #{$cl-secondary};
+  --cl-surface: #{$cl-surface};
+  --cl-text: #{$cl-text};
+  --cl-btn-text: #{$cl-btn-text};
+  --cl-card-text: #{$cl-card-text};
+  --cl-card-surface: #{$cl-card-surface};
+
+  --sp-unit: #{$sp-l};
+  --sp-3xs: #{sp-3xs};
+  --sp-2xs: #{sp-2xs};
+  --sp-xs: #{sp-xs};
+  --sp-s: #{sp-s};
+  --sp-m: #{sp-m};
+  --sp-l: #{sp-l};
+  --sp-xl: #{sp-xl};
+  --sp-3xl: #{sp-3xl};
+  
+  --fs-xs: #{$fs-xs};
+  --fs-sm: #{$fs-sm};
+  --fs-md: #{$fs-md};
+  --fs-lg: #{$fs-lg};
+  --fs-xl: #{$fs-xl};
+  --fs-2xl: #{$fs-2xl};
+  --fs-3xl: #{$fs-3xl};
+  
+  --tp-h1: #{$tp-h1};
+  --tp-h2_lh64: #{$tp-h2_lh64};
+  --tp-h2: #{$tp-h2};
+  --tp-h3: #{$tp-h3};
+  --tp-h3_fw600: #{$tp-h3_fw600};
+  --tp-h4: #{$tp-h4};
+  --tp-title_L: #{$tp-title_L};
+  --tp-title_M_fw500: #{$tp-title_M_fw500};
+  --tp-title_M: #{$tp-title_M};
+  --tp-title_S: #{$tp-title_S};
+  --tp-body_L: #{$tp-body_L};
+  --tp-body_M: #{$tp-body_M};
+  --tp-body_S: #{$tp-body_S};
+
+  --gd-primary-gradient: linear-gradient(
+      135deg,
+      #{$cl-blue-500} 0%,
+      #{$cl-violet-500} 100%
+    );
+  
+  --gd-primary-gradient: #{$gd-primary-gradient};
+  --tr-speed: #{$tr-speed};
+  --sh-card: #{$sh-card};
+  --sh-hover: #{$sh-hover};
+}
+
