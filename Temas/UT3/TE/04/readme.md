@@ -36,6 +36,7 @@ En este proyecto teneis que usar:
   - [tipografía](./desing/design-system/Typgraphy.jpg)
   - [Elementos](./desing/design-system/Design-Elements.jpg)
   - [Interactividad](./desing/design-system/Interactive-elements.jpg)
+- [Imágenes](./assets/img/)
 
 **Otros recursos teóricos:**
 
