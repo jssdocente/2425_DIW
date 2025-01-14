@@ -17,7 +17,10 @@
 
 :root {
 
-  --background-color: var(--light, #e3e3e3) var(--dark, #222);
+  --cl-white: #e3e3e3;
+  --cl-dark: #222;
+
+  --background-color: var(--light, --cl-dark) var(--dark, --cl-white);
   --text-color: var(--light, #222) var(--dark, #ccc);
   --button-color: var(--light, #289f5f) var(--dark, #289f5f);
   --button-hover-color: var(--light, #36ab67) var(--dark, #36ab67);
