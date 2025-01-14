@@ -114,7 +114,7 @@ Para ello, utiliza medias queries (mínimas posibles), y preferiblemente utiliza
 
 **Tipográfica responsiva**
 
-Aunque en el design-system no se define una escala tipográfica, utilizando la herramienta de tipografía-responsiva de [Utopia], aplicar para las medidas indicadas en las instrucciones, las medidas de tipografía responsiva más adecuada.
+Aunque en el design-system no se define una escala tipográfica, utilizando la herramienta de tipografía-responsiva de [Utopia](https://utopia.fyi/type/calculator), aplicar para las medidas indicadas en las instrucciones, las medidas de tipografía responsiva más adecuada.
 
 Utiliza esta escala tipográfica ya definida para obtener las medidas adecuadas según las especificaciones del design-system.
 
@@ -141,9 +141,14 @@ $fs-9xl: clamp(2.8865rem, 2.761rem + 0.6275vw, 3.2473rem); /* 52px */
 $fs-10xl: clamp(3.2473rem, 3.1061rem + 0.7059vw, 3.6532rem) /* 60px */
 ```
 
-De esta forma, los tipos de letra serían los siguientes:
+De esta forma, las tipografías según el design-system serían las siguientes:
 
 ```scss
+//token primitivo familia fuentes
+$ff-allegra: 'Allegra SC';
+$ff-SourceSansPro: 'Source Sans Pro';
+
+//tipografía
 $tp-h1: 700 #{$fs-10xl} / 89.6px #{$ff-allegra};
 $tp-h2: 700 #{$fs-5xl} / 57.6px #{$ft-allegra};
 $tp-h3: 700 #{$fs-3xl} / 36.8px #{$ft-allegra};
@@ -151,6 +156,7 @@ $tp-h4: 700 #{$fs-md} / 28.8px #{$ft-allegra};
 $tp-Large: 400 #{$fs-lg} / 20px #{$ft-SourceSansPro};
 $tp-Body: 400 #{$fs-sm} / 16px #{$ft-SourceSansPro};
 ```	
+> ‼️ El line-spacing hay que aplicarlo por separado.
 
 
 ### Paso 4: Interactividad
@@ -158,14 +164,16 @@ $tp-Body: 400 #{$fs-sm} / 16px #{$ft-SourceSansPro};
 Para este paso hay que dar el "toque" fino a la página, creando la parte de interactividad, como los hover, y alguna animación sencilla.
 
 
+> ⚡ Se valorará positivamente la inclusión de animaciones sencillas.
+
 
 ### Paso 5: Modo oscurso y claro
 
 Para diseñar el modo oscuro y claro, utiliza las custom properties creadas a partir de los tokens primitivos de color, y los tokens de 2º nivel, de una forma similar a la tarea 3.3.
 
-**DEBES BUSCAR TÚ LOS COLORES PARA EL MODO OSCURSO**
+**🔥🔥 DEBES BUSCAR TÚ LOS COLORES PARA EL MODO OSCURSO 🔥🔥**
 
-Debes crear 2 selectores, a poner en el elemento `html class="theme-light"` y `html class="theme-dark"`, y aplicar los colores correspondientes a cada uno de los elementos de la página. Para aplicar este modo, se utilizarán botones, para el light, dark y modo automático.
+Debes crear 2 selectores, a poner en el elemento `<html class="theme-light">` y `<html class="theme-dark">`, y aplicar los colores correspondientes a cada uno de los elementos de la página. Para aplicar este modo, se utilizarán botones en el `header`, para el light, dark y modo automático.
 
 ```scss
 .theme-light {
@@ -184,7 +192,7 @@ Debes crear 2 selectores, a poner en el elemento `html class="theme-light"` y `h
 }
 ```
 
-Para el modo automático, se puede utilizar a través de Media Query, pero presenta una serie de problemas, por lo que la mejor opción es utilizarlo a través de JS.
+Para el modo automático, se puede utilizar a través de Media Query, pero presenta una serie de problemas para combinarlo dejar al usuario elegir el modo, por lo que la mejor opción es utilizarlo a través de JS.
 
 ```js
  var systemSettingDark = window.matchMedia("(prefers-color-scheme: dark)");
