@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scroll-driven Animations: Carousel with Indicators</title>
+
+    <!-- Popover Polyfill -->
+    <script
+      src="/shared/third_party/popover/popover.iife.min.js"
+      type="module"
+    ></script>
+
+    <!-- Shared styles and scripts, applied to each page -->
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/shared/scripts.js"></script>
+
+    <!-- Page specific styles. The code for the scroll-driven animations is kept in a local style block for your reading convenience -->
+    <link rel="stylesheet" href="../shared/styles.css" />
+    <style>
+      @supports (animation-timeline: view()) {
+        @keyframes colorize-dot {
+          0%,
+          100% {
+            background: #ff00fa;
+          }
+        }
+
+        [data-component="carousel"] {
+          timeline-scope: --carousel;
+
+          .entries {
+            scroll-timeline: --carousel x;
+          }
+
+          .markers a {
+            animation: colorize-dot linear;
+            animation-timeline: --carousel;
+            animation-range: calc((var(--i) - 1) * 20%)
+              calc(var(--i) * 20% + 1px);
+          }
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- page content -->
+    <div class="warning">
+      <p>
+        ⚠️ Your browser does not support Scroll-driven Animations. Please use
+        Chrome 115 or newer.
+      </p>
+    </div>
+
+    <main>
+      <div data-component="carousel">
+        <ul class="entries" tabindex="0">
+          <li>
+            <a name="carousel_01"
+              ><img
+                src="../shared/img/matroshka-01.svg"
+                alt=""
+                title=""
+                width="222"
+                height="184"
+                draggable="false"
+            /></a>
+          </li>
+          <li>
+            <a name="carousel_02"
+              ><img
+                src="../shared/img/matroshka-02.svg"
+                alt=""
+                title=""
+                width="222"
+                height="184"
+                draggable="false"
+            /></a>
+          </li>
+          <li>
+            <a name="carousel_03"
+              ><img
+                src="../shared/img/matroshka-03.svg"
+                alt=""
+                title=""
+                width="222"
+                height="184"
+                draggable="false"
+            /></a>
+          </li>
+          <li>
+            <a name="carousel_04"
+              ><img
+                src="../shared/img/matroshka-04.svg"
+                alt=""
+                title=""
+                width="222"
+                height="184"
+                draggable="false"
+            /></a>
+          </li>
+          <li>
+            <a name="carousel_05"
+              ><img
+                src="../shared/img/matroshka-05.svg"
+                alt=""
+                title=""
+                width="222"
+                height="184"
+                draggable="false"
+            /></a>
+          </li>
+        </ul>
+        <ul class="markers">
+          <li>
+            <a href="#carousel_01"><span class="sr-only">Photo 1</span></a>
+          </li>
+          <li>
+            <a href="#carousel_02"><span class="sr-only">Photo 2</span></a>
+          </li>
+          <li>
+            <a href="#carousel_03"><span class="sr-only">Photo 3</span></a>
+          </li>
+          <li>
+            <a href="#carousel_04"><span class="sr-only">Photo 4</span></a>
+          </li>
+          <li>
+            <a href="#carousel_05"><span class="sr-only">Photo 5</span></a>
+          </li>
+        </ul>
+      </div>
+    </main>
+    <script
+      defer
+      src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015"
+      integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ=="
+      data-cf-beacon='{"rayId":"906f57e3789b8674","version":"2025.1.0","r":1,"token":"4f175b1ac3204b9ca216125bb4bd6018","serverTiming":{"name":{"cfExtPri":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}}}'
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
