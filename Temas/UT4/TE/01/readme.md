@@ -16,7 +16,11 @@ Esta práctica consiste en aplicar animaciones a la web realizado en el boletín
 
 El resultado final debe ser algo parecido a lo siguiente:
 
-![Resultado final](./_res/01-animaciones.gif)
+<figure>
+    <img src="./_res/01-animaciones.gif" width="48%" alt="Resultado final">
+    <img src="./_res/01-animaciones-2.gif" width="48%" align="right" alt="Resultado final">
+    <figcaption>Resultado final</figcaption>
+</figure>
 
 
 ## 📝 Instrucciones
@@ -33,8 +37,9 @@ Las animaciones a realizar son las siguientes:
 - Efecto de giro para el icono de la hamburguesa.
 - Efecto de brillo en los botones de explorar el proyecto al pasar por encima el ratón.
 - Efecto/animación en el "Enviar correo" de voltear 180 grados y volver.
+- Efecto enlaces menu principal al pasar por encima el ratón.
 
 
-Estas animaciones deberas aplicarlas 
+Estas animaciones deberas aplicarlas al proyecto del boletín 3.3.
 
 
