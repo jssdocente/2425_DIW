@@ -16,10 +16,12 @@ Esta práctica consiste en aplicar animaciones a la web realizado en el boletín
 
 El resultado final debe ser algo parecido a lo siguiente:
 
+<br>
+
 <figure>
-    <img src="./_res/01-animaciones.gif" width="48%" alt="Resultado final">
-    <img src="./_res/01-animaciones-2.gif" width="48%" align="right" alt="Resultado final">
-    <figcaption>Resultado final</figcaption>
+    <img src="./_res/01-animaciones.gif" width="50%" align="left" alt="Resultado final">
+    <img src="./_res/01-animaciones-2.gif" width="50%" align="right" alt="Resultado final">
+    <figcaption style="margin-top: 1rem; display: inline-block">Resultado final</figcaption>
 </figure>
 
 
