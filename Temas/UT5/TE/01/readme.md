@@ -470,3 +470,232 @@ Pasos:
 3. Refactoriza el import, en la página `index.astro` para que apunte a la nueva ruta.
 4. Crear un fichero `PriceCard.astro` dentro de la carpeta `src/components/sections/pricing`.
 5. Crea un array de objetos, con los datos de las tarjetas de precios, y recorre este array para crear las tarjetas de precios.
+
+
+
+### Paso 7: Crear un componente BaseHead
+
+En esta landing page, solo tenemos una página, pero en general vamos a tener varias páginas, y para no tener que repetir en todas, el título, la descripción, y las meta etiquetas, 
+vamos a crear un componente `BaseHead` que nos permita definir estos elementos de forma centralizada. Además vamos a obtener esta información, directamente de un fichero `site_info.json`.
+
+Vamos por partes.
+
+**Crear el componente BaseHead**
+
+Pasos:
+
+1. Crea un fichero `BaseHead.astro` dentro de la carpeta `src/components`.
+2. Crea im fichero `site.json` dentro de la carpeta `src/assets/data`.
+3. El fichero `site.json` va a contener la información del sitio, como el título, la descripción, y las meta etiquetas.
+4. En el componente `BaseHead`, vamos a leer este fichero, y vamos a utilizar esta información para definir el título, la descripción, y las meta etiquetas.
+5. En la página `index.astro`, vamos a importar este componente, y vamos a utilizarlo dentro de la sección `<head>`.
+6. En `BaseHead.astro`, vamos a incluir la llamada a `import "@assets/scss/app.scss";` para que se carguen los estlos en cualquier página que se cree.
+7. En `BaseHead.astro`, también vamos a incluir las meta etiquetas necesarias para el SEO.
+8. Busca una imagen 
+
+El fichero `BaseHead.astro` va a quedar de la siguiente forma:
+
+```astro
+---
+// Importamos el global CSS main.scss para que se aplique a todas las páginas a través del componente <BaseHead />.
+import "@assets/scss/app.scss";
+
+import siteData from "@assets/data/site.json";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
+//Canonical URL es la URL de la página actual, sin parámetros de búsqueda.
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const {
+  title = siteData.title,  //Si no se proporciona un título, se usará el título del sitio.
+  description = siteData.description, //Si no se proporciona una descripción, se usará la descripción del sitio.
+  image = "/img/branding/logo.png",  //La imagen predeterminada es el logo del sitio.
+} = Astro.props;
+
+---
+
+<!-- Global Metadata -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="icon" type="image/png" href="/img/branding/logo.png" />
+<meta name="generator" content={Astro.generator} />
+<title>{title}</title>
+
+<!-- Canonical URL -->
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Primary Meta Tags -->
+
+<meta name="title" content={title}   />
+<meta name="description" content={description} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={Astro.url} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={new URL(image, Astro.url)} />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={Astro.url} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={new URL(image, Astro.url)} />
+
+<!-- css librerias/ cdn -->
+
+
+<!-- Iconify CDN -->
+<script src="https://code.iconify.design/iconify-icon/2.0.0/iconify-icon.min.js"></script>
+```
+
+**Crear el fichero `site.json`**
+
+Dentro del fichero `site.json` vamos a definir la información del sitio, como el título, la descripción, y la imagen.
+
+```json
+{
+  "title": "Barber-Shop | Estilo y Precisión en Cada Corte",
+  "description": "Barber-Shop es tu peluquería de confianza para cortes de cabello, afeitados y estilo personalizado. Reserva tu cita y luce increíble.",
+  "author": "Web Designers S.L",
+  "site": "https://barber-shop.com"
+}
+```
+
+**Utilizar el componente BaseHead**
+
+Para utilizar el componente `BaseHead`, simplemente tenemos que importarlo en la página `index.astro`, y utilizarlo dentro de la sección `<head>`.
+
+```astro
+  ---
+  ---
+
+  <!-- index.astro  -->
+  <head>
+    <!-- El título y descripción obtienen valores por defecto  -->
+     <BaseHead />
+  </head>
+  // resto del código
+```
+
+**Imagen Marca**
+
+También es importante tener una imagen de `branding` que se va a utilizar, buscar cualquier imagen y guardarla en la carpeta `public/img/branding/logo.png`.
+
+
+### Paso 8: Crear componente SocialIcons
+
+Un tema muy importante son las redes sociales, y no hemos incluido en el `footer` ningún enlace a las redes sociales, 
+por lo que vamos a crear un componente `SocialIcons` que nos permita añadir estos enlaces de forma centralizada.
+
+Para ello, vamos a utilizar también un fichero `rrss.json` que va a contener los enlaces a las redes sociales, y otra información.
+
+Pasos:
+
+1. Crea un fichero `SocialIcons.astro` dentro de la carpeta `src/components/ui`.
+2. Crea un fichero `rrss.json` dentro de la carpeta `src/assets/data`.
+3. Importa el fichero `rrss.json` en el componente `SocialIcons.astro`.
+4. Agrega el componente `SocialIcons` en el componente `Footer`, donde lo consideres más adecuado.
+5. En el componente `SocialIcons`, recorre el array de objetos, y crea los enlaces a las redes sociales.
+
+
+**Crear el componente SocialIcons**
+
+El componente `SocialIcons` podría quedar de la siguiente forma:
+
+```astro
+---
+import rsssData from "@assets/data/rrss.json"
+---
+
+<div class="social__container">
+  {
+    rsssData.map((data, index) => (
+      <a href={data.link} class={`social__link`} target="_blank">
+        <iconify-icon
+          class={`social__icon`}
+          icon={data.icon}
+          width="25"
+          height="25"
+        />
+      </a>
+    ))
+  }
+</div>
+```
+
+Y los estilos, podrían ser algo así, dentro del mismo fichero `SocialIcons.astro`:
+
+```astro
+<style lang="scss">
+  @use "@assets/scss/1.settings/colors" as *;
+  @use "@assets/scss/1.settings/custom_properties" as *;
+
+  .social__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+
+    .social__link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      gap: 1rem;
+    }
+    .social__icon {
+      width: 30px;
+      color: hsl(from var(--cl-menu-bg) h s 70);
+    }
+
+  }
+  
+</style>
+```
+
+**Crear el fichero `rrss.json`**
+
+El fichero de información de los iconos, donde vamos a utilizar `iconos` a través `iconify`, utilizando para ello el `script` que hemos incluido en el componente `BaseHead`.
+
+```json
+[
+  {
+    "icon": "fa:github-alt",
+    "name": "GitHub",
+    "link": "https://github.com/WebDesignersSL"
+  },
+  {
+    "icon": "simple-icons:linkedin",
+    "name": "LinkedIn",
+    "link": "https://www.linkedin.com/in/barbershop/"
+  },
+  {
+    "icon": "entypo-social:youtube-with-circle",
+    "name": "YouTube",
+    "link": "https://www.youtube.com/@barbershop"
+  }
+]
+```
+
+### Conclusiones
+
+Hemos pasado de una página creada con métodos profesionales, pero sin poder reutilizar código, 
+a una página creada con un framework como Astro, donde las posibilidades son infinitas.
+
+Aprendizajes:
+
+- Aprendido a utilizar Astro.
+- Aprendido a crear componentes en Astro.
+- Cómo utilizar un preprocesador como SCSS en Astro.
+- Cómo utilizar de forma básica TypeScript en Astro.
+- Cómo configurar ciertos partes (RRSS, ...) para que su mantenimiento sea más sencillo.
+  
+Enhorabuena por haber conseguido llegar hasta aquí. 🚀🚀
+  
