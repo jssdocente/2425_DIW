@@ -122,7 +122,6 @@ Documentación:
 
 - [Tailwind: documentación oficial](https://tailwindcss.com/)
 - [Curso: Fundamentos de Tailwind](https://jssdocente.github.io/dwes2425d/temas/08/extra/tailwind/fundamentos-tailwind.html)
-
 - [Astro: documentación oficial](https://docs.astro.build/en/getting-started/)
 - [Atro: libro](https://understanding-astro-webook.vercel.app/)
 
@@ -162,6 +161,13 @@ Realizar el 1º commit del proyecto, "[Musify] Initial commit".
 ## Proceso
 
 En breve...
+
+
+### API Rest (Datos)
+
+Antes de poder consumir los datos desde un servidor, para poder ir creando el interfaz con datos estáticos (aún) se proporciona la salida que tendrá el API REST desde Laravel.
+
+[Daatos albums/artistas/canciones](https://drive.google.com/drive/folders/1GzeNhk6sQzNYEJjAYOfz3M8pshVbCSWl?usp=sharing)
 
 
 ### Consumir API Rest (Laravel)
