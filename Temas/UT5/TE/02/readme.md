@@ -160,8 +160,118 @@ Realizar el 1º commit del proyecto, "[Musify] Initial commit".
 
 ## Proceso
 
-En breve...
+### 1ª Parte. Página estática.
 
+En esta 1ª versión, la página será estática, generandosé complemtamente estática, bien con datos fijos o bien con datos dinámicos obtenidos en el momento de la construcción (`pnpm run build`).
+
+**Configurar datos de prueba**
+
+Estos datos de prueba, están disponibles en el [siguiente enlace](https://drive.google.com/drive/folders/1GzeNhk6sQzNYEJjAYOfz3M8pshVbCSWl?usp=sharing).
+
+1. Descargar los ficheros `albums.json, artist.json, tracks.json` 
+2. Gardarlos en  `assets\data\api\`.
+  
+**Crear tipos en Typescript**
+
+Para poder poder consultar los datos, bien de forma estática (datos en local) o a través de una API (datos en remoto) es neceario crear los tipos que nos van a permitir poder acceder a los mismos de una manera mucho más sencilla.
+
+1. Crea un carpeta `src\types`.
+2. Crea un fichero `musify-api.types.ts`.
+3. Guarda en ese fichero, lo siguiente.
+
+```ts
+export interface JsonApiResponse<T> {
+  jsonapi: {
+    version: string
+  },
+  data: T[];
+}
+
+export type Album = {
+  type: string;
+  id: string;
+  attributes: {
+    code: string;
+    name: string;
+    type: string;
+    albumType: string;
+    totalTracks: number;
+    imageUrl: string;
+    releaseDate: string;
+    createdAt: string;
+    updatedAt: string;
+  };
+  relationships: Relationships;
+  links: DataLinks;
+};
+
+export type Artist = {
+  type: string;
+  id: string;
+  attributes: {
+    code: string;
+    name: string;
+    type: string;
+    genre: string;
+    popularity: number;
+    imageUrl: string;
+    releaseDate: string;
+    createdAt: string;
+    updatedAt: string;
+  };
+  relationships: Relationships;
+  links: DataLinks;
+};
+
+export type Track = {
+  type: string;
+  id: string;
+  attributes: {
+    code: string;
+    name: string;
+    type: string;
+    duration: number;
+    trackNumber: number;
+    popularity: number;
+    playedTimes: number;
+    createdAt: string;
+    updatedAt: string;
+  };
+  relationships: {
+    album?: DataLinks;
+  };
+  links: DataLinks;
+};
+
+export type DataLinks = {
+  links: {
+    related: string;
+    self: string;
+  },
+  data?:ResourceLinkData | ResourceLinkData[] ;
+}
+
+export type Relationships = {
+  albums?: DataLinks;
+  artist?: DataLinks;
+  user?: DataLinks;
+  tracks?: DataLinks;
+}
+
+export type ResourceLinkData = {
+  type: string;
+  id: string;
+}
+```
+
+**Crear funciones de búsqueda**
+
+Otra tarea necesaria será obtener un los recursos vinculados, es decir, desde una Album su artista, desde un Album sus canciones. Esto se consigue proceando información relacionada. Esta información puede ser consultada vía datos remotos (Api) o en local(temporalmente.)
+
+
+
+
+### 2ª Parte. Conexión con API (servidor)
 
 ### API Rest (Datos)
 
