@@ -160,6 +160,13 @@ Realizar el 1º commit del proyecto, "[Musify] Initial commit".
 
 ## Proceso
 
+### API Rest (Datos)
+
+Antes de poder consumir los datos desde un servidor, para poder ir creando el interfaz con datos estáticos (aún) se proporciona la salida que tendrá el API REST desde Laravel.
+
+[Daatos albums/artistas/canciones](https://drive.google.com/drive/folders/1GzeNhk6sQzNYEJjAYOfz3M8pshVbCSWl?usp=sharing)
+
+
 ### 1ª Parte. Página estática.
 
 En esta 1ª versión, la página será estática, generandosé complemtamente estática, bien con datos fijos o bien con datos dinámicos obtenidos en el momento de la construcción (`pnpm run build`).
@@ -268,16 +275,304 @@ export type ResourceLinkData = {
 
 Otra tarea necesaria será obtener un los recursos vinculados, es decir, desde una Album su artista, desde un Album sus canciones. Esto se consigue proceando información relacionada. Esta información puede ser consultada vía datos remotos (Api) o en local(temporalmente.)
 
+También tendremos que preparar nuestro proyecto, para saber si queremos realizar las peticiones a una API (real) o a datos locales, pero este conocimiento no debería estar en nuestras páginas, sino alojado en funciones auxiliares que nos faciliten este trabajo.
+
+*más adelante vemos este punto*
+
+**Crear configuración**
+
+La App/Web se debe comportar de forma distinta en base a ciertas configuraciones. Estas configuraciones no pueden estar puestas a "fuego" en el código, sino que deben estar guardadas en algún fichero, que puede ser facilmente modificado, y el sistema obtenga estos datos de este fichero.
+
+1. Crea un fichero `.env` en la raiz del proyecto.
+2. Crear 2 variables: 
+   - PUBLIC_MODE_API=local  #api
+   - PUBLIC_MUSIFYAPI=http://musify.test/api/v1
+3. En el fichero "env.d.ts", agrega las siguientes lineas
+   ```ts
+    interface ImportMetaEnv {
+      readonly PUBLIC_MUSIFYAPI: string;
+      readonly PUBLIC_MODE_API: string;
+      // more env variables...
+    }
+
+    interface ImportMeta {
+      readonly env: ImportMetaEnv;
+    }
+   ```
+
+Ahora estas variables de entorno, las podremos obtener dentro de Astro, con `import.meta.env.{VARIABLE_NAME}`, así por ejemplo para obtener el valor de la variable de entorno `PUBLIC_MODE_API`, `import.meta.env.PUBLIC_MODE_API` desde cualquier fichero en Astro (parte JS/TS).
 
 
+**Funciones Asistentes**
+
+También es importante crear una serie de funciones globales, que vamos a utilizar en toda la aplicación:
+
+1. Crea una carpeta `utils\` y crea los siguientes ficheros:
+  `AlbumUtils.ts`, `helpers.ts`, `TrackUtils.ts`
+
+2. Helpers.ts
+    ```ts
+    export const fetchData = async (url: URL | string) => {
+      console.log(`fectch URL: ${url}`);
+      const resp = await fetch(url);
+      return await resp.json();
+    };
+
+
+    export function firstOrEmpty<T>(arr: T[], emptyValue: T): T {
+      return arr.length > 0 ? arr[0] : emptyValue;
+    }
+    ```
+
+3. AlbumUtils.ts
+  
+    ```ts
+    import albumsData from "@/assets/data/api/albums.json";
+    import { fetchData, firstOrEmpty } from '@/utils/helpers';
+    import type { JsonApiResponse, Album, Artist, Track, ResourceLinkData } from "@/types/musify-api.types";
+    import { MusifyAPI } from './MusifyAPI';
+    import { TracksUtils } from "./TrackUtils";
+    import { ArtistUtils } from "./ArtistUtils";
+
+    export const AlbumUtils = {
+      async getById(id: string) {
+
+        if (import.meta.env.PUBLIC_MODE_API == 'local') {
+          const results = albumsData.data.filter((item) => item.id == id);
+          return firstOrEmpty(results, null);
+        }
+
+        //Llamada remota
+        return await MusifyAPI.album.getById(id)
+
+      },
+
+      async getArtist(id: string) {
+
+
+        if (import.meta.env.PUBLIC_MODE_API == 'local') {
+          return await ArtistUtils.getById(id)
+        }
+
+        //Llamada remota
+        return await MusifyAPI.artist.getById(id)
+
+      },
+
+      async getTracks(id: string) {
+
+
+        if (import.meta.env.PUBLIC_MODE_API == 'local') {
+
+          const album = await AlbumUtils.getById(id)
+          if (!album)
+            return [];
+
+          return await Promise.all(
+            (album.relationships?.tracks?.data as ResourceLinkData[])
+              .map(async ({ id }) => {
+                const track = await TracksUtils.getById(id);
+                // console.log(track);
+                return track;
+              })
+          )
+        }
+
+        //Llamada remota
+        return await MusifyAPI.album.getTracks(id)
+
+      },
+
+      async getAll() {
+        if (import.meta.env.PUBLIC_MODE_API == 'local') {
+          console.log('en local.. retornado todos los datos')
+          return albumsData;
+        } else {
+          return await MusifyAPI.album.getAll();
+        }
+      }
+    }
+    ```
+
+4. ArtistUtils.ts
+
+```ts
+import artistsData from "@/assets/data/api/artists.json";
+import { MusifyAPI } from "./MusifyAPI";
+import { fetchData, firstOrEmpty } from "./helpers";
+import type { Album, Artist, JsonApiResponse, ResourceLinkData, Track } from "@/types/musify-api.types";
+import type { AriaAttributes } from "react";
+import { AlbumUtils } from "./AlbumUtils";
+
+export const ArtistUtils = {
+  async getById(id: string) {
+    if (import.meta.env.PUBLIC_MODE_API == 'local') {
+      const results = artistsData.data.filter((item) => item.id == id);
+      return firstOrEmpty(results, null);
+    }
+
+    //Llamada remota
+    return await MusifyAPI.album.getById(id)
+  },
+
+  async getAlbums(id: string) {
+      if (import.meta.env.PUBLIC_MODE_API == 'local') {
+
+        let artistId = id;
+        const artist = await ArtistUtils.getById(id)
+        if (!artist)
+          return [];
+
+        return await Promise.all(
+          (artist.relationships?.albums?.data as ResourceLinkData[])
+            .map(async ({ id }) => {
+              const album = await AlbumUtils.getById(id);
+              // console.log(album);
+              return album;
+            })
+        )
+      }
+
+      //Llamada remota
+      return await MusifyAPI.artist.getAlbums(id)
+
+  },
+
+  async getAll() {
+    if (import.meta.env.PUBLIC_MODE_API == 'local') {
+      return artistsData;
+    } else {
+      return await MusifyAPI.artist.getAll();
+    }
+  }
+}
+```
+
+
+5. TrackUtil.ts
+
+    ```ts
+    import tracksData from "@/assets/data/api/tracks.json";
+    import type { JsonApiResponse, ResourceLinkData, Track } from "@/types/musify-api.types";
+    import { fetchData, firstOrEmpty } from "./helpers";
+    import { MusifyAPI } from "./MusifyAPI";
+    import { AlbumUtils } from "./AlbumUtils";
+
+    export const TracksUtils = {
+      async getById(id: string) {
+
+        if (import.meta.env.PUBLIC_MODE_API == 'local') {
+          const results = tracksData.data.filter((item) => item.id == id);
+          return firstOrEmpty(results, null);
+        }
+
+        //Llamada remota
+        return await MusifyAPI.track.getById(id)
+      },
+
+      async getAlbumByTrackId(id: string) {
+
+        if (import.meta.env.PUBLIC_MODE_API == 'local') {
+          const track = await TracksUtils.getById(id)
+          if (!track)
+            return [];
+
+          let albumId = (track.relationships?.album?.data as ResourceLinkData).id;
+          return await AlbumUtils.getById(albumId);
+        }
+
+        //Llamada remota
+        return await MusifyAPI.track.getAlbum(id);
+
+      },
+
+      async getAlbumByTrack(track: Track) {
+
+        if (import.meta.env.PUBLIC_MODE_API == 'local') {
+          let albumId = (track.relationships?.album?.data as ResourceLinkData).id;
+          return await AlbumUtils.getById(albumId);
+        }
+
+        //Llamada remota
+        return await MusifyAPI.track.getAlbum(track.id);
+      },
+
+
+      async getAll() {
+        if (import.meta.env.PUBLIC_MODE_API == 'local') {
+          console.log('en local.. retornado todos los datos')
+          return tracksData;
+        } else {
+          return await MusifyAPI.track.getAll();
+        }
+      }
+    }
+    ```
 
 ### 2ª Parte. Conexión con API (servidor)
 
-### API Rest (Datos)
+Para poder consumir datos, es neceario antes aplicar la lógica al servidor para servir peticiones siguiendo la convención [JsonAPI](https://jsonapi.org/).
 
-Antes de poder consumir los datos desde un servidor, para poder ir creando el interfaz con datos estáticos (aún) se proporciona la salida que tendrá el API REST desde Laravel.
+> En este punto del proyecto, vamos a suponer que nuestro servidor ya devuelve datos utilizando la ruta `musify.test/api/v1/...`.
 
-[Daatos albums/artistas/canciones](https://drive.google.com/drive/folders/1GzeNhk6sQzNYEJjAYOfz3M8pshVbCSWl?usp=sharing)
+**Llamar a la API remota**
+
+Para llamar a la API remota también necesitamos una serie de funciones, que liberen la complejidad a las páginas, y que tengan toda la lógica de las llamadas a la API dentro de estas funciones.
+
+Crea un fichero `MusifyAPI.ts` dentro de carpeta `Utils`.
+
+  ```ts
+  import { fetchData, firstOrEmpty } from '@/utils/helpers';
+
+  export const MusifyAPI = {
+    buildBaseUrl() {
+      return `${import.meta.env.PUBLIC_MUSIFYAPI}`
+    },
+    artist: {
+      baseUrl(): string {
+        return `${MusifyAPI.buildBaseUrl()}/artists`;
+      },
+      async getById(id: string) {
+        return await fetchData(`${MusifyAPI.artist.baseUrl()}/${id}`)
+      },
+      async getAlbums(id: string) {
+        return await fetchData(`${MusifyAPI.artist.baseUrl()}/${id}/albums`)
+      },
+      async getAll() {
+        return await fetchData(`${MusifyAPI.artist.baseUrl()}`)
+      }
+    },
+    album: {
+      baseUrl(): string {
+        return `${MusifyAPI.buildBaseUrl()}/albums`;
+      },
+      async getById(id: string) {
+        return await fetchData(`${MusifyAPI.artist.baseUrl()}/${id}`)
+      },
+      async getAll() {
+        return await fetchData(`${MusifyAPI.album.baseUrl()}`)
+      },
+      async getTracks(id: string) {
+        return await fetchData(`${MusifyAPI.album.baseUrl()}/${id}/tracks`)
+      },
+
+    },
+    track: {
+      baseUrl(): string {
+        return `${MusifyAPI.buildBaseUrl()}/tracks`;
+      },
+      async getById(id: string) {
+        return await fetchData(`${MusifyAPI.track.baseUrl()}/${id}`)
+      },
+      async getAlbum(id: string) {
+        return await fetchData(`${MusifyAPI.track.baseUrl()}/${id}/album`)
+      },
+      async getAll() {
+        return await fetchData(`${MusifyAPI.track.baseUrl()}`)
+      }
+    }
+  }
+  ```
 
 
 ### Consumir API Rest (Laravel)
