@@ -574,6 +574,16 @@ Crea un fichero `MusifyAPI.ts` dentro de carpeta `Utils`.
   }
   ```
 
+**Desactivar verificación de certificado**
+
+Como en Laravel Herd estamos utilizando un certificado digital autofirmado, este no es válido a nivel general, y por tanto Node dará un error (seguramente). Para desactivarlo configurar esta variable de entorno:
+
+```bash
+set NODE_TLS_REJECT_UNAUTHORIZED=0
+```
+
+Para que tenga efecto, cerrar el terminal y volver a abrir.
+
 
 ### Consumir API Rest (Laravel)
 
