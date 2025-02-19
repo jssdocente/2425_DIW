@@ -43,49 +43,6 @@ Las principales funcionalidades que debe tener la aplicación son:
   - Los albumnes se mostrarán ordenados por nombre del artista
   - Al hacer click sobre un Artista, se mostrará su detalle, incluyendo sus albúmes
 
-- Página del catálogo musical de un usuario
-  - Tendrá las siguientes secciones
-    - Albumes más recientes: últimos agregados primero (máximo 5)
-    - Artistas más recientes: últimos agregados primero (máximo 5)
-    - Albums: Listado completo de todos los albums
-    - Artistas: Listado completo de todos los artistas
-  
-  - Se podrá eliminar albumes y artistas. (PROYECTO EXTRA)
-
-- Página Spotify
-  Página para buscar música en la plataforma Spotify. Habrá un buscador, y se podrá buscar por Albumes o Artistas.
-  - Al buscar, se buscará por 2 conceptos, albúms y artistas. (ya dado proyecto base)
-  - Tendrá las siguientes secciones
-    - Featuring: Albumes más populares (4)
-    - Artitas: Todos los artistas de la búsqueda.
-    - Albúms: Todos los albúms de la búsqueda.
-  - Opciones:
-    - Cada album y artista, al hacer click sobre la imagen, el detalle de un Albúm o artista. Desde ese detalle, se podrá agregar el albúmm o artista a la BD.
-    - Detalle albúm: Se muestra su foto, nombre albúm y todas sus canciones
-    - Detalle artista: Se muestra su nombre y todas sus albumes.
-
-- Registro / Login de usuarios
-  - Se podrá registrar un usuario
-  - Se podrá loguear un usuario
-  - Se podrá cerrar sesión
- 
-**Permisos**  [PROYECTO EXTRA]
-
-- Invitados:
-  - Ver portada
-  - Ver albúms página, pero no detalle.
-  - Ver artistas página, pero no detalle.
-  - No puede ver página Spotify.
-- Logados
-  - Usuario: 
-    - Puede visualizar todo.
-    - Puede agregar un albúm o artista a su colección. (Si el albúm o artista no existen en catálogo global, se deben agregar al catálogo primero)
-    - Puede agregar un albúm o artista desde Spotify a su colección y al catálogo global.
-  - Administrador
-    - Elimimar un album del catálogo global, automáticamente eliminarlo de todos los usuarios que lo tengan.
-    - Elimimar un artista del catálogo global, automáticamente eliminarlo de todos los usuarios que lo tengan.
-
-
 
 ### Requisitos Astro
 
@@ -343,7 +300,8 @@ También es importante crear una serie de funciones globales, que vamos a utiliz
         }
 
         //Llamada remota
-        return await MusifyAPI.album.getById(id)
+        let result = await MusifyAPI.album.getById(id)
+        return result.data;
 
       },
 
@@ -355,7 +313,7 @@ También es importante crear una serie de funciones globales, que vamos a utiliz
         }
 
         //Llamada remota
-        return await MusifyAPI.artist.getById(id)
+        return (await MusifyAPI.artist.getById(id)).data;
 
       },
 
@@ -379,17 +337,17 @@ También es importante crear una serie de funciones globales, que vamos a utiliz
         }
 
         //Llamada remota
-        return await MusifyAPI.album.getTracks(id)
+        return (await MusifyAPI.album.getTracks(id)).data;
 
       },
 
       async getAll() {
         if (import.meta.env.PUBLIC_MODE_API == 'local') {
           console.log('en local.. retornado todos los datos')
-          return albumsData;
-        } else {
-          return await MusifyAPI.album.getAll();
+          return albumsData.data;
         }
+      
+        return (await MusifyAPI.album.getAll())?.data ?? [];
       }
     }
     ```
@@ -434,16 +392,16 @@ export const ArtistUtils = {
       }
 
       //Llamada remota
-      return await MusifyAPI.artist.getAlbums(id)
+      return (await MusifyAPI.artist.getAlbums(id))?.data ?? [];
 
   },
 
   async getAll() {
     if (import.meta.env.PUBLIC_MODE_API == 'local') {
-      return artistsData;
-    } else {
-      return await MusifyAPI.artist.getAll();
+      return artistsData.data;
     }
+
+    return (await MusifyAPI.artist.getAll())?.data ?? [];
   }
 }
 ```
@@ -501,10 +459,11 @@ export const ArtistUtils = {
       async getAll() {
         if (import.meta.env.PUBLIC_MODE_API == 'local') {
           console.log('en local.. retornado todos los datos')
-          return tracksData;
-        } else {
-          return await MusifyAPI.track.getAll();
+          return tracksData.data;
         }
+
+        return (await MusifyAPI.track.getAll())?.data ?? [];
+        
       }
     }
     ```
@@ -589,6 +548,40 @@ Para que tenga efecto, cerrar el terminal y volver a abrir.
 
 Próximamente...
 
+
+### PROYECTO EXTRA
+
+Para aquellos alumnos que aprueben el curso completo, podrán hacer (para subir nota, máximo 2 puntos) el resto de la funcionalidad de la aplicación.
+
+### Funcionalidades Extra
+
+**Aplicación dinámica con ReactJS**
+
+Para esta parte será necesario agregar a Astro la integración con React. 
+
+...explicación proximamente...
+
+**Validación de Usuarios**
+
+Se debe incluir autenticación de usuarios (login/logout). Para ello, será necesario en la parte de Laravel esta funcionalidad. *Esta parte se explica en el proyecto de Laravel.*
+
+En esta parte será necesario:
+
+- Autentificar (login/logout)
+- Obtener el usuario logado del sistema, si el usuario vuelve a abrir la página web.
+- Obtener información del usuario logado desde el Servidor.
+- Protección de rutas.
+
+**Funcionalides dinámicas**
+
+Dentro de las carácteristicas a implementar en ReactJS, es justamente su mejor cualidad, aplicar dinamismo a las páginas sin necesidad de volver a recargar o que el servidor devuelva toda la página.
+
+Algunas funcionalidades posibles a realizar :
+
+- Reproducir una canción (Simplemente incremetando el contador de nº veces reproducidas).
+- Like\Unliked a una canción o a un artista.
+- Agregar un albúm a la colección/catálogo de un usuario.
+
 ## Anexos
 
 ### Rúbrica de evaluación
@@ -597,4 +590,29 @@ Próximamente...
 
 ### Funcionalidad de la aplicación.
 
-En breve...
+**Portada**
+
+<img src="./_res/images/portada.png" width="48%" >
+
+
+**Albums**
+
+<div class="flex">
+  <img src="./_res/images/albums.png" width="48%" >
+  <img src="./_res/images/album-detalle.png" width="48%" >
+</div>
+
+**Artistas**
+
+<div class="flex flex-col justify-content align-center">
+  <img src="./_res/images/artists.png" width="48%"  >
+  <img src="./_res/images/artista-detalle.png" width="48%" >
+</div>
+
+
+**Video: Funcionalidad completa**
+
+<img src="./_res/images/video-funcionamiento.gif" width="48%">
+
+
+
